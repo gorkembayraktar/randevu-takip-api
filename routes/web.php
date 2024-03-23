@@ -35,17 +35,27 @@ $router->group(['prefix' => 'api', 'middleware' => 'jwt'], function () use ($rou
         $router->get('/', ['uses' => 'CustomersController@get']);
         $router->post('create', ['uses' => 'CustomersController@create']);
         $router->post('edit/{id}', ['uses' => 'CustomersController@edit']);
-        $router->delete('delete/{id}', ['uses' => 'CustomersController@delete']);
+        $router->delete('{id}', ['uses' => 'CustomersController@delete']);
     });
 
     $router->group(['prefix' => 'appointment-hours'], function () use ($router) {
         $router->get('/', ['uses' => 'AppointmentHourController@get']);
 
         $router->post('create', ['uses' => 'AppointmentHourController@create']);
-        $router->delete('delete/{id}', ['uses' => 'AppointmentHourController@delete']);
+        $router->delete('{id}', ['uses' => 'AppointmentHourController@delete']);
         $router->post('active/{id}', ['uses' => 'AppointmentHourController@active']);
         $router->get('{id}', ['uses' => 'AppointmentHourController@find']);
 
+    });
+
+    $router->group(['prefix' => 'holidays'], function () use ($router) {
+        $router->get('/', ['uses' => 'HolidaysController@get']);
+        $router->post('create', ['uses' => 'HolidaysController@create']);
+        $router->post('edit/{id}', ['uses' => 'HolidaysController@edit']);
+        $router->delete('{id}', ['uses' => 'HolidaysController@delete']);
+ 
+
+        $router->get('{id}', ['uses' => 'HolidaysController@find']);
     });
 
 });
