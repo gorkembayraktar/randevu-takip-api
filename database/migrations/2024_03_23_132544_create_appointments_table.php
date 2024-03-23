@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('create_user_id');
             $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('ah_id'); // appointment_hours_id
 
             $table->string('token');
             $table->string('fullname')->nullable();
@@ -26,7 +27,8 @@ return new class extends Migration
             $table->boolean('isDeleted')->default(false);
             $table->timestamps();
 
-            $table->foreign('customer_id')->references('id')->on('customers');
+            //$table->foreign('ah_id')->references('id')->on('appointment_hours');
+           // $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('create_user_id')->references('id')->on('users');
         });
     }

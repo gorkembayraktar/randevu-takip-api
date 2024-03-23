@@ -67,4 +67,12 @@ $router->group(['prefix' => 'api', 'middleware' => 'jwt'], function () use ($rou
         $router->delete('{id}', ['uses' => 'OffDatesController@delete']);
     });
 
+    $router->group(['prefix' => 'appointments'], function () use ($router) {
+        $router->get('/', ['uses' => 'AppointmentsController@get']);
+        $router->post('create', ['uses' => 'AppointmentsController@create']);
+        $router->post('edit/{id}', ['uses' => 'AppointmentsController@edit']);
+        $router->delete('{id}', ['uses' => 'AppointmentsController@delete']);
+        $router->get('{id}', ['uses' => 'AppointmentsController@find']);
+    });
+
 });
