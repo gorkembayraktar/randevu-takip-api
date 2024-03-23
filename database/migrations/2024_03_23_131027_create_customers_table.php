@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('note')->nullable();
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

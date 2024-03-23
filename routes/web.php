@@ -27,4 +27,11 @@ $router->group(['prefix' => 'api', 'middleware' => 'jwt'], function () use ($rou
     $router->post('profile/update', ['uses' => 'ProfileController@update']);
     $router->post('profile/password-reset', ['uses' => 'ProfileController@password_reset']);
   
+    $router->group(['prefix' => 'customers'], function () use ($router) {
+        $router->get('/', ['uses' => 'CustomersController@get']);
+        $router->post('create', ['uses' => 'CustomersController@create']);
+        $router->post('edit/{id}', ['uses' => 'CustomersController@edit']);
+        $router->delete('delete/{id}', ['uses' => 'CustomersController@delete']);
+    });
+
 });
