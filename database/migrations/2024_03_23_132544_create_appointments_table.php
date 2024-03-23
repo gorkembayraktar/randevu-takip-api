@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('create_user_id');
             $table->unsignedBigInteger('customer_id');
+
+            $table->string('token');
             $table->string('fullname')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

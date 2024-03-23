@@ -57,5 +57,14 @@ $router->group(['prefix' => 'api', 'middleware' => 'jwt'], function () use ($rou
 
         $router->get('{id}', ['uses' => 'HolidaysController@find']);
     });
+    $router->group(['prefix' => 'off-dates'], function () use ($router) {
+        $router->get('/', ['uses' => 'OffDatesController@get']);
+
+        $router->post('create', ['uses' => 'OffDatesController@create']);
+        $router->post('edit/{id}', ['uses' => 'OffDatesController@edit']);
+        $router->get('{id}', ['uses' => 'OffDatesController@find']);
+
+        $router->delete('{id}', ['uses' => 'OffDatesController@delete']);
+    });
 
 });
