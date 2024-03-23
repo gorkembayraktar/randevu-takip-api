@@ -24,14 +24,28 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 });
 
 $router->group(['prefix' => 'api', 'middleware' => 'jwt'], function () use ($router) {
-    $router->post('profile/update', ['uses' => 'ProfileController@update']);
-    $router->post('profile/password-reset', ['uses' => 'ProfileController@password_reset']);
+   
+    $router->group(['prefix' => 'profile'], function () use ($router) {
+        $router->post('update', ['uses' => 'ProfileController@update']);
+        $router->post('password-reset', ['uses' => 'ProfileController@password_reset']);
+    });
+
   
     $router->group(['prefix' => 'customers'], function () use ($router) {
         $router->get('/', ['uses' => 'CustomersController@get']);
         $router->post('create', ['uses' => 'CustomersController@create']);
         $router->post('edit/{id}', ['uses' => 'CustomersController@edit']);
         $router->delete('delete/{id}', ['uses' => 'CustomersController@delete']);
+    });
+
+    $router->group(['prefix' => 'appointment-hours'], function () use ($router) {
+        $router->get('/', ['uses' => 'AppointmentHourController@get']);
+
+        $router->post('create', ['uses' => 'AppointmentHourController@create']);
+        $router->delete('delete/{id}', ['uses' => 'AppointmentHourController@delete']);
+        $router->post('active/{id}', ['uses' => 'AppointmentHourController@active']);
+        $router->get('{id}', ['uses' => 'AppointmentHourController@find']);
+
     });
 
 });

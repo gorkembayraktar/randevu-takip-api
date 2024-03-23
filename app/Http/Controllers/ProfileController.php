@@ -59,7 +59,7 @@ class ProfileController extends Controller
         $status = $user->save();
 
         return response()->json([
-            'success' => true,
+            'success' => $status,
         ], $status ? 200 : 500);
     }
 
