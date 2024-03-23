@@ -15,7 +15,7 @@ class HolidaysController extends Controller
      */
     public function get()
     {   
-        $data = Holiday::all();
+        $data = Holiday::orderBy('id', 'desc')->get();
         return [
             "total" => $data->count(),
             "data" => $data

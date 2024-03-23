@@ -13,7 +13,7 @@ class CustomersController extends Controller
      */
     public function get()
     {   
-        $data = Customer::select('id', 'fullname', 'email', 'phone', 'note', 'created_at', 'updated_at')->where('isDeleted', 0)->get();
+        $data = Customer::select('id', 'fullname', 'email', 'phone', 'note', 'created_at', 'updated_at')->where('isDeleted', 0)->orderBy('id', 'desc')->get();
         return [
             "total" => $data->count(),
             "data" => $data
