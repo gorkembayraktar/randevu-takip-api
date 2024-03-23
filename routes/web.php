@@ -24,7 +24,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 });
 
 $router->group(['prefix' => 'api', 'middleware' => 'jwt'], function () use ($router) {
-    $router->get('authors', ['uses' => 'ProfileController@edit']);
-
+    $router->post('profile/update', ['uses' => 'ProfileController@update']);
+    $router->post('profile/password-reset', ['uses' => 'ProfileController@password_reset']);
   
 });
