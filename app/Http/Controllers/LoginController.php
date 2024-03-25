@@ -24,7 +24,7 @@ class LoginController extends Controller
         if (!$user || !Hash::check($password, $user->password)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Kullanıcı adı veya şifre hatalı.',
+                'error' => 'Kullanıcı adı veya şifre hatalı.',
             ], 401);
         }
 
@@ -42,6 +42,7 @@ class LoginController extends Controller
 
         return response()->json([
             'success' => true,
+            'user' => $user,
             'token' => $token,
         ]);
     }
